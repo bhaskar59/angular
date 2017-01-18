@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+    my first angular example
+    </title>
+    <script data-require="angular.js@2.0.0" data-semver="1.6.0" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+    <script src="Invoice.js"></script>
+  </head>
+
+  <body>
+   <div ng-app="invoice" ng-controller="InvoiceController as invoice">
+  <b>Invoice:</b>
+  <div>
+    Quantity: <input type="number" min="0" ng-model="invoice.qty" required />
+  </div>
+      <div>
+      cost: <input type="number" min="0"  ng-model = "invoice.cost" required/>
+        <select ng-model="invoice.inCurr">
+          <option ng-repeat="curr in invoice.currencies">{{curr}}</option>
+        </select>
+      </div>
+      <div>
+        <b>Total:</b>
+        <span ng-repeat ="curr in invoice.currencies">
+          {{invoice.total(curr) | currency:curr}}
+        </span>
+      </div>
+      <div>
+        <input type="button" ng-click="invoice.pay()" value="pay" />
+      </div>
+    </div>
+  </body>
+
+</html>
